@@ -73,7 +73,7 @@ webhooks 的请求方式为POST请求，有两种数据格式可以选择，JSON
     "password": "pwd"
 }
 ```
-其他的具体数据可以到各个官网查看：[码云](http://git.mydoc.io/?t=154711#text_154711)、[Coding](https://open.coding.net/webhooks/)、[GitHub](https://developer.github.com/webhooks/)
+其他的具体数据可以到各个官网查看：[码云](http://git.mydoc.io/?t=154711#text_154711)、[Coding](https://open.coding.net/webhooks/)、[GitHub](https://developer.github.com/webhooks/)、[Gogs](https://github.com/gogs/gogs/blob/master/README_ZH.md)
 
 
 ## Use（使用步骤）
