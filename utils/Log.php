@@ -27,10 +27,15 @@ class CLogFileHandler implements ILogHandler
     }
 }
 
+//设置默认日志等级
+if (!defined('LOG_LEVEL')) {
+    define('LOG_LEVEL', 15);
+}
+
 class Log
 {
     private $handler = null;
-    private $level   = 15;
+    private $level   = LOG_LEVEL;
 
     private static $instance = null;
 
@@ -38,7 +43,7 @@ class Log
 
     private function __clone() { }
 
-    public static function Init($handler = null, $level = 15)
+    public static function Init($handler = null, $level = LOG_LEVEL)
     {
         if (!self::$instance instanceof self) {
             self::$instance = new self();
@@ -127,7 +132,7 @@ class Log
         if (!self::$instance) {
             self::$instance = self::Init();
         }
-
+        is_array($msg) && $msg = json_encode($msg);
         self::$instance->_write($level, $msg);
     }
 }
