@@ -1,6 +1,6 @@
 # gitHook
 
-> 当进行开发的环境在本地，而运行的环境要在服务端时，每一次提交代码都需要在服务端pull一次。而利用git的hooks功能，能够让我们省去这一步，下面我就以码云的webhooks为例，实现服务端的代码自动同步部署。
+> 当进行开发的环境在本地，而运行的环境要在服务端时，每一次提交代码都需要在服务端pull一次。而利用git的hooks功能，能够让我们省去这一步，下面我就以github的webhooks为例，实现服务端的代码自动同步部署。
 
 ## 了解 git 的 hooks
 
@@ -22,55 +22,108 @@ Git 能在特定的重要动作发生时触发自定义脚本。 有两组这样
 
 webhooks 的请求方式为POST请求，有两种数据格式可以选择，JSON 和 web 的 form参数，可以自行选择是否使用密码来确定请求。（注意：该密码是明文)
 
-不同托管平台的POST数据格式都不太一样，不过也不会有太大影响，只是解析数据的时候注意就行了，下面是码云的 Push 操作回调的 json 数据：
+不同托管平台的POST数据格式都不太一样，不过也不会有太大影响，只是解析数据的时候注意就行了，下面是git的 `Push` 操作回调的部分 `json` 数据：
 
 ```
 {
-    "before": "fb32ef5812dc132ece716a05c50c7531c6dc1b4d", 
-    "after": "ac63b9ba95191a1bf79d60bc262851a66c12cda1", 
-    "ref": "refs/heads/master", 
-    "user_id": 13,
-    "user_name": "123", 
-    "user": {
-      "name": "123",
-      "username": "test123",
-      "url": "https://gitee.com/oschina"
-    }, 
-    "repository": {
-        "name": "webhook", 
-        "url": "http://git.oschina.net/oschina/webhook", 
-        "description": "", 
-        "homepage": "https://gitee.com/oschina/webhook"
-    }, 
-    "commits": [
-        {
-            "id": "ac63b9ba95191a1bf79d60bc262851a66c12cda1", 
-            "message": "1234 bug fix", 
-            "timestamp": "2016-12-09T17:28:02 08:00", 
-            "url": "https://gitee.com/oschina/webhook/commit/ac63b9ba95191a1bf79d60bc262851a66c12cda1", 
-            "author": {
-                "name": "123", 
-                "email": "123@123.com", 
-                "time": "2016-12-09T17:28:02 08:00"
-            }
-        }
-    ], 
-    "total_commits_count": 1, 
-    "commits_more_than_ten": false, 
-    "project": {
-        "name": "webhook", 
-        "path": "webhook", 
-        "url": "https://gitee.com/oschina/webhook", 
-        "git_ssh_url": "git@gitee.com:oschina/webhook.git", 
-        "git_http_url": "https://gitee.com/oschina/webhook.git", 
-        "git_svn_url": "svn://gitee.com/oschina/webhook", 
-        "namespace": "oschina", 
-        "name_with_namespace": "oschina/webhook", 
-        "path_with_namespace": "oschina/webhook", 
-        "default_branch": "master"
-    }, 
-    "hook_name": "push_hooks", 
-    "password": "pwd"
+  "ref": "refs/heads/master",
+  "before": "b111263b14230e2276922a3d1f6e585c771db75e",
+  "after": "3611f77d00bc8f6294e5cb39731010db1478ca20",
+  "created": false,
+  "deleted": false,
+  "forced": false,
+  "base_ref": null,
+  "compare": "https://github.com/AndyYoungCN/githook/compare/b111263b1423...3611f77d00bc",
+  "commits": [
+    {
+      "id": "3611f77d00bc8f6294e5cb39731010db1478ca20",
+      "tree_id": "221e39b970eba9b71b0b20f1061fa0b9c78f43e0",
+      "distinct": true,
+      "message": "修改日志级别",
+      "timestamp": "2019-04-26T16:17:48+08:00",
+      "url": "https://github.com/AndyYoungCN/githook/commit/3611f77d00bc8f6294e5cb39731010db1478ca20",
+      "author": {
+        "name": "andyoung",
+        "email": "1218853253@qq.com",
+        "username": "AndyYoungCN"
+      },
+      "committer": {
+        "name": "andyoung",
+        "email": "1218853253@qq.com",
+        "username": "AndyYoungCN"
+      },
+      "added": [
+
+      ],
+      "removed": [
+
+      ],
+      "modified": [
+        "README.md",
+        "pull.php"
+      ]
+    }
+  ],
+  "head_commit": {
+    "id": "3611f77d00bc8f6294e5cb39731010db1478ca20",
+    "tree_id": "221e39b970eba9b71b0b20f1061fa0b9c78f43e0",
+    "distinct": true,
+    "message": "修改日志级别",
+    "timestamp": "2019-04-26T16:17:48+08:00",
+    "url": "https://github.com/AndyYoungCN/githook/commit/3611f77d00bc8f6294e5cb39731010db1478ca20",
+    "author": {
+      "name": "andyoung",
+      "email": "1218853253@qq.com",
+      "username": "AndyYoungCN"
+    },
+    "committer": {
+      "name": "andyoung",
+      "email": "1218853253@qq.com",
+      "username": "AndyYoungCN"
+    },
+    "added": [
+
+    ],
+    "removed": [
+
+    ],
+    "modified": [
+      "README.md",
+      "pull.php"
+    ]
+  },
+  "repository": {
+    "id": 183569523,
+    "node_id": "MDEwOlJlcG9zaXRvcnkxODM1Njk1MjM=",
+    "name": "githook",
+    "full_name": "AndyYoungCN/githook",
+    "private": false,
+    "owner": {
+      "name": "AndyYoungCN",
+      "email": "1218853253@qq.com",
+      "login": "AndyYoungCN",
+      "id": 13751605,
+      "node_id": "MDQ6VXNlcjEzNzUxNjA1",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/13751605?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/AndyYoungCN",
+      "html_url": "https://github.com/AndyYoungCN",
+      "followers_url": "https://api.github.com/users/AndyYoungCN/followers",
+      "following_url": "https://api.github.com/users/AndyYoungCN/following{/other_user}",
+      "gists_url": "https://api.github.com/users/AndyYoungCN/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/AndyYoungCN/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/AndyYoungCN/subscriptions",
+      "organizations_url": "https://api.github.com/users/AndyYoungCN/orgs",
+      "repos_url": "https://api.github.com/users/AndyYoungCN/repos",
+      "events_url": "https://api.github.com/users/AndyYoungCN/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/AndyYoungCN/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "html_url": "https://github.com/AndyYoungCN/githook",
+    "description": "利用webhook完成自动部署。兼容码云、Coding、GitHub、Gogs",
+   
+    # more...
 }
 ```
 其他的具体数据可以到各个官网查看：[码云](http://git.mydoc.io/?t=154711#text_154711)、[Coding](https://open.coding.net/webhooks/)、[GitHub](https://developer.github.com/webhooks/)、[Gogs](https://github.com/gogs/gogs/blob/master/README_ZH.md)
@@ -92,7 +145,7 @@ webhooks 的请求方式为POST请求，有两种数据格式可以选择，JSON
     chown -R www-data /var/www/Project # 这里请改成你的项目目录
     ```
 4. 设置目标仓库webhook
-![webhook](https://image-static.segmentfault.com/205/931/2059310629-5a462fca45ba0_articlex)
+![webhook](https://img-blog.csdnimg.cn/20190426163010700.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Fnb25pZTIwMTIxOA==,size_16,color_FFFFFF,t_70)
 
  设置URL  
 ```URL:http://<domain>/githook/pull.php?[log_level=false][&path=xxx]```
