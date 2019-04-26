@@ -78,7 +78,7 @@ webhooks 的请求方式为POST请求，有两种数据格式可以选择，JSON
 
 ## Use（使用步骤）
 
-1. git clone xxxx () 放在目标
+1. git clone git@github.com:AndyYoungCN/githook.git  放在目标仓库同个服务器上，最好同个目录；
 2. 配置目录权限
     ```
     ## 如果需要日志, 修改日志权限
@@ -98,6 +98,8 @@ webhooks 的请求方式为POST请求，有两种数据格式可以选择，JSON
 ```URL:http://<domain>/githook/pull.php?[is_log=false][&path=xxx]```
 * `is_log` 是否开启日志；默认false
 * `path` 仓库位置；默认 '../{repositoryname}',`repositoryname`:仓库名；
+
+> 目标仓库必须要设置用户名密码或者SSH(让`git pull`命令可以直接执行 )
 
 
 ### 注意事项
