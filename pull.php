@@ -3,9 +3,9 @@ ini_set('display_errors', 'On');
 require_once 'utils/Log.php';
 $requestBody = file_get_contents("php://input");
 
-$is_log = $_GET['is_log'];
+$is_log = isset($_GET['is_log']) ? $_GET['is_log'] : false;
 $is_log && Log::DEBUG($requestBody);
-
+system('whoami');
 
 $requestBody = json_decode($requestBody);
 
