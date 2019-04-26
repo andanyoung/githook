@@ -95,11 +95,13 @@ webhooks 的请求方式为POST请求，有两种数据格式可以选择，JSON
 ![webhook](https://image-static.segmentfault.com/205/931/2059310629-5a462fca45ba0_articlex)
 
  设置URL  
-```URL:http://<domain>/githook/pull.php?[is_log=false][&path=xxx]```
-* `is_log` 是否开启日志；默认false
+```URL:http://<domain>/githook/pull.php?[log_level=false][&path=xxx]```
+* `log_level` 是否日志等级；默认0：关闭日志；15 打开所有日志；打开日志需要给`logs`目录写的权限
 * `path` 仓库位置；默认 '../{repositoryname}',`repositoryname`:仓库名；
 
-> 目标仓库必须要设置用户名密码或者SSH(让`git pull`命令可以直接执行 )
+
+> 目标仓库必须要设置用户名密码或者SSH(让`git pull`命令可以直接执行 )  
+> 最终将会执行`cd {$path} && git pull` 命令
 
 
 ### 注意事项

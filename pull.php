@@ -3,8 +3,11 @@ ini_set('display_errors', 'On');
 require_once 'utils/Log.php';
 $requestBody = file_get_contents("php://input");
 
-$is_log = isset($_GET['is_log']) ? $_GET['is_log'] : false;
-$is_log && Log::DEBUG($requestBody);
+$log_level = isset($_GET['log_level']) ? $_GET['is_log'] : 0;
+$log_level = intval($log_level);
+define('LOG_LEVEL', 0);
+
+Log::DEBUG($requestBody);
 system('whoami');
 
 $requestBody = json_decode($requestBody, true);
@@ -17,5 +20,5 @@ echo $shell_cmd . '<br>';
 
 $shell_res = system($shell_cmd);
 
-$is_log && Log::INFO($shell_cmd);
-$is_log && Log::INFO($shell_res);
+Log::INFO($shell_cmd);
+Log::INFO($shell_res);
