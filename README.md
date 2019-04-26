@@ -109,3 +109,10 @@ webhooks 的请求方式为POST请求，有两种数据格式可以选择，JSON
 ```$xslt
 system("whoami"); // 查看是哪个用户执行该命令
 ```
+
+
+## License
+
+[MIT](https://github.com/AndyYoungCN/githook/blob/master/LICENSE)
+
+Copyright (c) 2019-present andyoung
