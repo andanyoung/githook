@@ -13,8 +13,9 @@ $requestBody = json_decode($requestBody, true);
 $path = isset($_GET['path']) ? urldecode($_GET['path']) : '../' . $requestBody['repository']['name'];
 
 $shell_cmd = "cd {$path} && git pull";
+echo $shell_cmd . '<br>';
+
 $shell_res = system($shell_cmd);
 
-echo $shell_cmd . '<br>';
 $is_log && Log::INFO($shell_cmd);
 $is_log && Log::INFO($shell_res);
