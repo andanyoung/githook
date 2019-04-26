@@ -7,7 +7,7 @@ $is_log = isset($_GET['is_log']) ? $_GET['is_log'] : false;
 $is_log && Log::DEBUG($requestBody);
 system('whoami');
 
-$requestBody = json_decode($requestBody);
+$requestBody = json_decode($requestBody, true);
 
 
 $path = isset($_GET['path']) ? urldecode($_GET['path']) : '../' . $requestBody['repository']['name'];
