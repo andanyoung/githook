@@ -8,8 +8,8 @@ define('LOG_LEVEL', 0);
 require_once 'utils/Log.php';
 
 if ($_SERVER['HTTP_CONTENT_TYPE'] === 'application/json') {
-    $requestBody = json_decode($requestBody, true);
     $requestBody = file_get_contents("php://input");
+    $requestBody = json_decode($requestBody, true);
 } elseif ($_SERVER['HTTP_CONTENT_TYPE'] === 'application/x-www-form-urlencoded') {
     $requestBody = $_POST;
 }
