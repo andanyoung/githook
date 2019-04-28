@@ -11,7 +11,7 @@ if ($_SERVER['HTTP_CONTENT_TYPE'] === 'application/json') {
     $requestBody = file_get_contents("php://input");
     $requestBody = json_decode($requestBody, true);
 } elseif ($_SERVER['HTTP_CONTENT_TYPE'] === 'application/x-www-form-urlencoded') {
-    $requestBody = $_POST;
+    $requestBody = json_decode($_POST['payload'], true);
 }
 if (!isset($requestBody)) {
     exit('没有请求参数');
